@@ -9,7 +9,7 @@ class Post(models.Model):
         on_delete=models.CASCADE, 
     )  # new 
     body = models.TextField() 
-
+    
     def __str__(self):
         return self.title
     def get_absolute_url(self):  # new 

@@ -1,7 +1,7 @@
 {% load static %}
 <html>
 <head>
-  <title>Django Marketplace</title>
+  <title>Sam's List</title>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
   <link href="{% static 'css/base.css' %}" rel="stylesheet">
 </head>
@@ -10,7 +10,8 @@
   <div>
     <header>
       <div class="nav-left">
-        <h1><a href="{% url 'home' %}">Django Marketplace</a></h1>
+        <img src="{% static '/images/slogo.png' %}" alt="SL Logo" width="60">
+        <h1><a href="{% url 'home' %}">Sam's List</a></h1>
       </div>
       <div class="nav-right">
         <a href="{% url 'post_new' %}">+ New Post</a>

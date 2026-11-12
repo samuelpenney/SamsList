@@ -8,12 +8,15 @@ header {
     display: flex;
 }
 header h1 a { 
-    color: red; 
+    color: rgb(18, 160, 243); 
     text-decoration: none;
 } 
-.nav-left { 
+.nav-left {
     margin-right: auto;
-} 
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
 .nav-right { 
     display: flex; 
     padding-top: 2rem;
