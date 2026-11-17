@@ -1,0 +1,40 @@
+{
+  "hosting": {
+    "public": "public",
+    "predeploy": [
+      "\"$PROJECT_DIR/.venv/bin/python\" \"$PROJECT_DIR/manage.py\" collectstatic --noinput --clear"
+    ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": {
+          "functionId": "samslist",
+          "region": "us-central1"
+        }
+      }
+    ]
+  },
+  "functions": [
+    {
+      "source": ".",
+      "codebase": "default",
+      "runtime": "python314",
+      "ignore": [
+        ".*",
+        "venv",
+        "public",
+        "__pycache__",
+        "db.sqlite3-journal",
+        "firebase.json",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}

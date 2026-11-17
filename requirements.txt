@@ -8,3 +8,4 @@ pathspec==1.1.1
 platformdirs==4.14.5
 pytokens==0.4.1
 sqlparse==0.6.1
+firebase-functions==0.6.0

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,39 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-!4fg*fy&oy@3yb)iwtt1ercd2ptd-@yg3mmc_5^a=a87^dyyhd"
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-!4fg*fy&oy@3yb)iwtt1ercd2ptd-@yg3mmc_5^a=a87^dyyhd",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG stays on locally; main.py (the Firebase function) sets DJANGO_DEBUG=False.
+DEBUG = os.environ.get("DJANGO_DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = []
+FIREBASE_HOSTS = ["samslist-5bd85.web.app", "samslist-5bd85.firebaseapp.com"]
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "[::1]",
+    *FIREBASE_HOSTS,
+    ".a.run.app",  # the Cloud Function's own URL
+    ".cloudfunctions.net",
+]
+
+CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in FIREBASE_HOSTS]
+
+# Firebase Hosting sits in front of the function as a proxy.
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# Firebase Hosting strips every cookie except one named "__session" before
+# forwarding to the function, so keep all state (login + CSRF token +
+# messages) in that single session cookie.
+SESSION_COOKIE_NAME = "__session"
+CSRF_USE_SESSIONS = True
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+SESSION_COOKIE_SECURE = not DEBUG
 
 
 # Application definition
@@ -76,7 +104,7 @@ WSGI_APPLICATION = "DjangoProject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": os.environ.get("DJANGO_SQLITE_PATH", BASE_DIR / "db.sqlite3"),
     }
 }
 
@@ -116,7 +144,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"] 
+STATICFILES_DIRS = [BASE_DIR / "static"]
+# `collectstatic` copies files here so Firebase Hosting serves them directly.
+STATIC_ROOT = BASE_DIR / "public" / "static"
 
 
 # Email
