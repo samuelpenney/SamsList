@@ -23,7 +23,6 @@ debugpy==1.8.21
 defusedxml==0.7.1
 Django==6.1
 djangorestframework==3.18.3
--e git+https://github.com/UMT-CSCI232/data-structures-samuelpenney.git@032e6e3f66dc5566b2fc31bf58d0eaeb677a573d#egg=dsa
 duckdb==1.5.6
 executing==2.2.1
 fonttools==4.61.1
