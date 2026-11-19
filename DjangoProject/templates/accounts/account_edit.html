@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %} 
 {% block content %}
-<h2>My Account</h2>
-<form method="post">{% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit">Save</button>
-</form>
-<p style="margin-bottom: 20px;"><a href="{% url 'password_change' %}">Change Password</a></p>
-<h2>My Active Posts</h2>
-    <h3 style="text-align: center; color: lightcoral;">***COMING SOON***</h3>
+<h2 style="margin: 13px;">
+    <span style="color: rgb(18, 160, 243)">{{user.username}}'s</span> Account</h2>
+<div style="display: flex; align-items: flex-start; gap: 30px; margin: 30px;">
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
+        <div>
+            <h2>Active Listings</h2>
+            <h3 style="text-align: center; color: lightcoral;">***COMING SOON***</h3>
+        </div>
+    </div>
+    <div style="flex: 1;">
+        <form method="post">{% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit">Save</button>
+        </form>
+        <p style="margin-bottom: 20px;"><a href="{% url 'password_change' %}">Change Password</a></p>
+    </div>
+
+</div>
 {% endblock content %}
