@@ -68,6 +68,8 @@ INSTALLED_APPS = [
     "channels",
     "MainApp",
     "accounts",
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -170,6 +172,9 @@ MAILERS = {
     },
 }
 
+
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 AUTH_USER_MODEL = "accounts.CustomUser"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
