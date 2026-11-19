@@ -96,7 +96,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "DjangoProject.wsgi.application"
+#WSGI_APPLICATION = "DjangoProject.wsgi.application"
 ASGI_APPLICATION = "DjangoProject.asgi.application" # new change, might have to fix in the future
 
 CHANNEL_LAYERS = {
