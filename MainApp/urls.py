@@ -6,6 +6,7 @@ from .views import (
     BlogUpdateView,
     BlogDeleteView,
     SignUpView,
+    PrivacyView
 )
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path("post/<int:pk>/delete/", BlogDeleteView.as_view(), name="post_delete"),
     path("accounts/signup/", SignUpView.as_view(), name="signup"),
     path("", BlogListView.as_view(), name="home"),
+    path("privacy/", PrivacyView.as_view(), name="privacy")
 ]
