@@ -15,15 +15,25 @@ class BlogDetailView(DetailView):
 class BlogCreateView(CreateView):
     model = Post
     template_name = "post_new.html"
-    fields = ["title", "author", "body"]
+    fields = ["title", "author", "zip_code", "body"]
 
 class BlogUpdateView(UpdateView):
     model = Post
     template_name = "post_edit.html"
-    fields = ["title", "body"]
+    fields = ["title", "body", "zip_code"]
 
 class BlogDeleteView(DeleteView):
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy("home")
+
+
+
+from django.contrib.auth.forms import UserCreationForm
+
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
 
