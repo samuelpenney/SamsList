@@ -7,7 +7,15 @@
     <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
         <div>
             <h2>Active Listings</h2>
-            <h3 style="text-align: center; color: lightcoral;">***COMING SOON***</h3>
+            {%for post in posts%}
+                <div class="post-entry">
+                    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                    <p>Zip Code: {{ post.zip_code }}</p>
+                    <p>Description: {{ post.body }}</p>
+                </div>
+            {%empty%}
+                 <h3 style="text-align: center; color: lightcoral;">***NO ACTIVE LISTINGS***</h3>
+            {%endfor%}
         </div>
     </div>
     <div style="flex: 1;">

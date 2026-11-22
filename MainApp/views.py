@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Post
@@ -12,10 +13,13 @@ class BlogDetailView(DetailView):
     model = Post
     template_name = "post_detail.html"
 
-class BlogCreateView(CreateView):
+class BlogCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = "post_new.html"
-    fields = ["title", "author", "zip_code", "body"]
+    fields = ["title", "zip_code", "body"]
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class BlogUpdateView(UpdateView):
     model = Post

@@ -66,7 +66,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "Chat",
     "MainApp",
     "accounts",
     "crispy_forms",
@@ -108,7 +107,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)], # Might need to change in the future
+            'hosts': [{'address': 'redis://127.0.0.1:6379', 'socket_timeout': None}], # Might need to change in the future
         },
     },
 }
