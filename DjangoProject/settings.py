@@ -59,6 +59,7 @@ SESSION_COOKIE_SECURE = not DEBUG
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",  # must be first: makes runserver serve WebSockets
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -70,6 +71,7 @@ INSTALLED_APPS = [
     "accounts",
     "crispy_forms",
     "crispy_bootstrap5",
+    "Chat",
 ]
 
 MIDDLEWARE = [
