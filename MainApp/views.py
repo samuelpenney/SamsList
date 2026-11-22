@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Post
@@ -37,3 +37,5 @@ class SignUpView(CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
 
+class PrivacyView(TemplateView):
+    template_name = "privacy.html"
