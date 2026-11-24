@@ -59,14 +59,18 @@ SESSION_COOKIE_SECURE = not DEBUG
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",  # must be first: makes runserver serve WebSockets
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "Chat",
     "MainApp",
+    "accounts",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "Chat",
 ]
 
 MIDDLEWARE = [
@@ -103,7 +107,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)], # Might need to change in the future
+            'hosts': [{'address': 'redis://127.0.0.1:6379', 'socket_timeout': None}], # Might need to change in the future
         },
     },
 }
@@ -169,5 +173,9 @@ MAILERS = {
     },
 }
 
+
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
+AUTH_USER_MODEL = "accounts.CustomUser"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -19,8 +19,32 @@ header h1 a {
 }
 .nav-right { 
     display: flex; 
-    padding-top: 2rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding-right: 13px;
 } 
+
+.nav-dropdown {
+    position: relative;
+}
+.nav-dropdown:not([open]) .custom-dropdown-menu {
+    display: none;
+}
+.nav-dropdown[open] .custom-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 7px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    row-gap: 5px;
+    min-width: 160px;
+    padding: 9px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
 .post-entry { 
     margin-bottom: 2rem;
 } 

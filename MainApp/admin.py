@@ -6,7 +6,8 @@ from .models import Post
 class PostAdmin(admin.ModelAdmin):  # new 
     list_display = ( 
     "title", 
-    "author", 
+    "author",
+    "zip_code",
     "body", 
 ) 
 admin.site.register(Post, PostAdmin)
