@@ -6,6 +6,7 @@ header {
     border-bottom: 1px solid #999; 
     margin-bottom: 2rem; 
     display: flex;
+    margin: 20;
 }
 header h1 a { 
     color: rgb(18, 160, 243); 
@@ -47,9 +48,10 @@ header h1 a {
 
 .post-entry { 
     margin-bottom: 2rem;
+    margin: 30;
 } 
 .post-entry h2 { 
-    margin: 0.5rem 0;
+    margin: 15;
 } 
 .post-entry h2 a,
 .post-entry h2 a:visited { 
@@ -57,10 +59,11 @@ header h1 a {
     text-decoration: none;
 } 
 .post-entry p { 
-    margin: 0; 
+    margin: 30; 
     font-weight: 400;
 } 
 .post-entry h2 a:hover { 
+    margin: 30;
     color: red;
 }
 
